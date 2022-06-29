@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile.local
+        image: app
+        container_name: app
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./app/:/var/www/app/
+    db:
+        platform: linux/x86_64
+        image: mysql:5.7
+        restart: always
+        environment:
+            MYSQL_DATABASE: 'db'
+            MYSQL_USER: 'user'
+            MYSQL_PASSWORD: 'password'
+            MYSQL_ROOT_PASSWORD: 'password'
+        ports:
+            - '33066:3306'
+        expose:
+            - '3306'
+        volumes:
+           - app:/var/lib/mysql
+volumes:
+    app:
+networks:
+    app:
+        driver: bridge
