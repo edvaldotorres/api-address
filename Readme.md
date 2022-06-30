@@ -12,8 +12,6 @@
 
 > The project aims to consume the IBGE API, which consists of an artisan command to save the cities of the desired UF. After saving all the cities it is possible to do all the address CRUD related to the city.
 
-### 🏠 [Documentation API]()
-
 ## Prerequisites
 
 * Docker
