@@ -41,7 +41,7 @@ class AddressController extends Controller
     public function show($id): JsonResponse
     {
         $address = Address::find($id);
-        if ($address->isEmpty()) {
+        if (empty($address)) {
             return $this->notFound('Address not found');
         }
 
@@ -58,7 +58,7 @@ class AddressController extends Controller
     public function update(AddressRequest $request, $id): JsonResponse
     {
         $address = Address::find($id);
-        if ($address->isEmpty()) {
+        if (empty($address)) {
             return $this->notFound('Address not found');
         }
 
@@ -75,7 +75,7 @@ class AddressController extends Controller
     public function destroy($id): JsonResponse
     {
         $address = Address::find($id);
-        if ($address->isEmpty()) {
+        if (empty($address)) {
             return $this->notFound('Address not found');
         }
 
