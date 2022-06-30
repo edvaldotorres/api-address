@@ -1,68 +1,89 @@
-## Base Docker para o laravel 
+<h1 align="center">Welcome to api-address 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/php-7.4-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/laravel-8.0-red.svg?cacheSeconds=2592000" />
+  <a href="https://documenter.getpostman.com/view/13040502/UzBjrney#c3212110-5be6-45bd-b000-95c6538746ca" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+</p>
 
-## Diretórios
-- config = Diretórios e arquivos de configurações do ambiente
-- app = Sua aplicação
+> The project consists of a Rest Full API with JSON Web Token (JWT) authentication. Relying on good code standards, use of Traits and Form Request Validation. This project has as main objective a constant study on API elaboration in Laravel.
 
+### 🏠 [Documentation API]()
 
-## Instale o Laravel
+## Prerequisites
 
+* Docker
+* Composer
+
+## Install
+
+1. Clone your repository, example:
+
+```sh
+git clone https://github.com/edvaldotorres/api-address
 ```
-composer create-project laravel/laravel app
+2. Head over to the project directory.
+
+```sh
+cd api-address
 ```
+3. Run the servers
 
-
-### Permissões no diretório storage/ (dentro de app/)
-
-```
-chmod -R 777 storage/
-```
-
-### Levanta o ambiente (na raiz)
-
-```bash
+```sh
 docker-compose up --build -d
 ```
+NOTE: This may take a while if this is the first time installing this as a container.
 
-### Instala as dependências
+4. Set the proper permissions to the project files .
 
-```bash
-docker exec -it front-gestao-de-ativos composer install
+```sh
+cd app
 ```
+```sh
+chmod -R 777 storage/
+```
+5. Install the dependencies
 
-### Executando migrations
+```sh
+composer install
+```
+6. Build the migrate.
 
-```bash
+```sh
 docker exec -it app php artisan migrate
 ```
 
-## Guia de Commit
+7. Imports cities.
 
-Padronizamos a forma de escrita dos commits. O objetivo é criar **mensagens mais legíveis** e que passem facilmente o histórico do projeto.
+```sh
+docker exec -it app php artisan import:cities (arguments - uf)
+```
+or
 
-* Seja sucinto, porém é melhor sobrar do que faltar.
-* Escreva sempre título e se necessário (geralmente é) uma mensagem explicando o que foi feito.
-* Indicar o motivo é melhor do que o que foi feito no código, já que temos o diff para esse histórico.
-* Idioma padronizado: **Inglês**.
+```sh
+docker exec -it app php artisan import:cities pe
+```
 
-### Formato da mensagem do commit
+## Usage
 
-````
-[Tag] #task Título Relevante do Commit
+1. You can now open your application with API platform: https://localhost/api/
 
-Mensagem do commit. Geralmente explicando o que foi alterado,
-removido ou adicionado e possíveis detalhes de implementação
-que possam ser usados pela equipe em desenvolvimentos futuros.
-Um checklist explicando o que foi feito também é interessante.
-````
+## Author
 
-### Exemplo de Tags
+👤 **Edvaldo Torres de Souza**
 
-* **Feat:** Uma nova funcionalidade
-* **Fix:** Correção de algum bug
-* **Style:** Mudanças que não alteram o significado do código (white-space, formatação, ponto-e-virgula faltando...)
-* **Refact:** Alteração do código que não corrige ou adiciona nada.
-* **Docs:** Relacionado a documentações
-* **Git:** Relacionado ao versionamento
-* **Test:** Relacionado a testes
+* Website: [edvaldotorres.com.br](https://edvaldotorres.com.br/)
+* Github: [@edvaldotorres](https://github.com/edvaldotorres)
+* LinkedIn: [Edvaldo Torres](https://www.linkedin.com/in/edvaldo-torres-189894150/)
 
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/edvaldotorres/api-address/issues). 
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
