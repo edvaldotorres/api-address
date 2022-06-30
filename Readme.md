@@ -10,7 +10,7 @@
   </a>
 </p>
 
-> The project consists of a Rest Full API with JSON Web Token (JWT) authentication. Relying on good code standards, use of Traits and Form Request Validation. This project has as main objective a constant study on API elaboration in Laravel.
+> The project aims to consume the IBGE API, which consists of an artisan command to save the cities of the desired UF. After saving all the cities it is possible to do all the address CRUD related to the city.
 
 ### 🏠 [Documentation API]()
 
