@@ -1,0 +1,47 @@
+FROM php:7.4-fpm
+WORKDIR /var/www/app/
+
+ENV ACCEPT_EULA=Y
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    apt-utils \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    libtool \
+    libcurl4-openssl-dev \
+    libzip-dev \
+    libxml2-dev \
+    gnupg \
+    apt-transport-https \
+    git \
+    nginx \
+    && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+
+RUN docker-php-ext-install \
+    intl \
+    mbstring \
+    exif \
+    pcntl \
+    bcmath \
+    gd \
+    mysqli \
+    pdo \
+    pdo_mysql \
+    # pdo_sqlite \
+    xml \
+    curl \
+    zip
+
+RUN openssl req -subj '/CN=localhost' -x509 -newkey rsa:4096 -nodes -keyout /etc/nginx/conf.d/key.pem -out /etc/nginx/conf.d/cert.pem -days 365
+
+COPY ./config/nginx/default.local /etc/nginx/sites-enabled/default
+COPY ./config/entrypoint.sh /etc/entrypoint.sh
+
+EXPOSE 80
+
+RUN chmod +x /etc/entrypoint.sh
+
+ENTRYPOINT ["/etc/entrypoint.sh"]
